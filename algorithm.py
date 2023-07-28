@@ -1,17 +1,24 @@
+import sys
 n = int(input())
+stack = []
 for i in range(n):
-    ans = "YES"
-    VPS = input()
-    stack = []
-    for k in VPS:
-        if k == '(':
-            stack.append(k)
+    order = sys.stdin.readline().split()
+    if order[0] == "top":
+        if len(stack) != 0:
+            print(stack[-1])
         else:
-            try:
-                stack.pop()
-            except:
-                ans = "NO"
-                break
-    if len(stack) != 0:
-        ans = "NO"
-    print(ans)
+            print(-1)
+    elif order[0] == "pop":
+        if len(stack) != 0:
+            print(stack.pop())
+        else:
+            print(-1)
+    elif order[0] == "push":
+        stack.append(order[1])       
+    elif order[0] == "empty":
+        if len(stack) == 0:
+            print(1)
+        else:
+            print(0)
+    else:
+        print(len(stack))
